@@ -1,0 +1,12 @@
+{
+  "Welcome": {
+    "translation": "",
+    "defaults": "Welcome to React",
+    "origin": [
+      [
+        "src/Components/App.js",
+        52
+      ]
+    ]
+  }
+}
