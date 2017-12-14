@@ -14,10 +14,8 @@ import createHistory from 'history/createBrowserHistory'
 // Create a history : browser history in this case
 const history = createHistory()
 
+// Create application store and pass the history
 const store = createStore(history)
-
-ReactDOM.render(<App />, document.getElementById('root'))
-registerServiceWorker()
 
 ReactDOM.render(
   <Provider store={store}>
@@ -29,3 +27,4 @@ ReactDOM.render(
   </Provider>,
   document.getElementById('root')
 )
+registerServiceWorker()
