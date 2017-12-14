@@ -50,13 +50,13 @@ class App extends Component {
   }
 }
 
-function mapStateToProps (state) {
+function mapStateToProps(state) {
   return {
     config: state.startup.configuration
   }
 }
 
-function mapDispatchToProps (dispatch) {
+function mapDispatchToProps(dispatch) {
   return {
     attemptStartup: (configuration) => dispatch(StartupActions.startup(configuration))
   }

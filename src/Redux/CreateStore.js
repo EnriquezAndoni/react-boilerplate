@@ -3,12 +3,10 @@ import createSagaMiddleware from 'redux-saga'
 
 import { routerMiddleware } from 'react-router-redux'
 
-
 /*
 * Create the store
 * */
 export default (rootReducer, rootSaga, history) => {
-
   /* ------------- Redux Configuration ------------- */
 
   const middleware = []

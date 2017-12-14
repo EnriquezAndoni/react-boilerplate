@@ -7,9 +7,9 @@ import App from './Components/App'
 import createStore from './Redux'
 import './index.css'
 
+import createHistory from 'history/createBrowserHistory'
 import { ConnectedRouter } from 'react-router-redux'
 import { Route } from 'react-router'
-import createHistory from 'history/createBrowserHistory'
 
 // Create a history : browser history in this case
 const history = createHistory()

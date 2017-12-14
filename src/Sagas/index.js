@@ -18,6 +18,6 @@ import { startup } from './StartupSagas'
 export default function * root () {
   yield all([
     // Configuration
-    takeLatest(StartupTypes.STARTUP, startup),
+    takeLatest(StartupTypes.STARTUP, startup)
   ])
 }

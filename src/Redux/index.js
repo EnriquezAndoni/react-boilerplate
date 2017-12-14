@@ -5,6 +5,7 @@ import { routerReducer } from 'react-router-redux'
 
 export default (history) => {
   /* ------------- Assemble The Reducers ------------- */
+
   const rootReducer = combineReducers({
     router: routerReducer,
     startup: require('./StartupRedux').reducer

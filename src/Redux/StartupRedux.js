@@ -11,14 +11,17 @@ export const StartupTypes = Types
 export default Creators
 
 /* ------------- Initial State ------------- */
+
 export const INITIAL_STATE = Immutable({
   configuration: null
 })
 
 /* ------------- Reducers ------------- */
+
 export const startup = (state, { configuration }) => state.merge({ configuration })
 
 /* ------------- Hookup Reducers To Types ------------- */
+
 export const reducer = createReducer(INITIAL_STATE, {
   [Types.STARTUP]: startup
 })
