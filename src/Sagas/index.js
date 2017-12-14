@@ -17,7 +17,7 @@ import { startup } from './StartupSagas'
 
 export default function * root () {
   yield all([
-    // Configuration sagas
+    // Configuration
     takeLatest(StartupTypes.STARTUP, startup),
   ])
 }
