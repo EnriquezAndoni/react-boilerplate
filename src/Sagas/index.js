@@ -2,11 +2,11 @@ import { takeLatest, all } from 'redux-saga/effects'
 
 /* ------------- Types ------------- */
 
-import { StartupTypes } from '../Redux/StartupRedux'
+import { I18nTypes } from '../Redux/I18nRedux'
 
 /* ------------- Sagas ------------- */
 
-import { startup } from './StartupSagas'
+import { loadLanguage } from './I18nSagas'
 
 /* ------------- API ------------- */
 
@@ -17,7 +17,6 @@ import { startup } from './StartupSagas'
 
 export default function * root () {
   yield all([
-    // Configuration
-    takeLatest(StartupTypes.STARTUP, startup)
+    takeLatest(I18nTypes.ATTEMPT_I18N, loadLanguage)
   ])
 }

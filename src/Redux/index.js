@@ -8,7 +8,7 @@ export default (history) => {
 
   const rootReducer = combineReducers({
     router: routerReducer,
-    startup: require('./StartupRedux').reducer
+    i18n: require('./I18nRedux').reducer
   })
 
   return configureStore(rootReducer, rootSaga, history)

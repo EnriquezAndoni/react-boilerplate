@@ -5,10 +5,9 @@ import { connect } from 'react-redux'
 // Translation
 import { I18nProvider, Trans } from 'lingui-react'
 import { unpackCatalog } from 'lingui-i18n'
-import catalog from '../locale/es/messages'
 
 // Actions
-import StartupActions from '../Redux/StartupRedux'
+import I18nActions from '../Redux/I18nRedux'
 
 import './Styles/App.css'
 
@@ -21,32 +20,52 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      configuration: null
+      catalogs: {}
     }
   }
 
   /*
   static propTypes = {
-    attemptStartup: PropTypes.func
+    loadLanguage: PropTypes.func
   }
   */
 
   componentDidMount() {
-    this.setState({ configuration: {text: 'New Configuration'} })
+    const language = this.props.language
+    this.props.loadLanguage(language)
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log('Received Props: ', nextProps.config)
+    const { language, catalog } = nextProps
+    this.setState(state => ({
+      catalogs: {
+        ...state.catalogs,
+        [language]: unpackCatalog(catalog)
+      }
+    }))
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    const { language } = nextProps
+    const { catalogs } = nextState
+
+    if (language !== this.props.language && !catalogs[language]) {
+      // Start loading message catalog and skip update
+      this.props.loadLanguage(language)
+      return false
+    }
+    return true
   }
 
   render() {
-    const { attemptStartup } = this.props
-    const { configuration } = this.state
+    const { language } = this.props
+    const { catalogs } = this.state
 
-    const dev = process.env.NODE_ENV !== 'production' ? require('lingui-i18n/dev') : undefined
+    // Skip rendering when catalog isn't loaded.
+    if (!catalogs[language]) return (<div/>)
 
     return (
-      <I18nProvider language="es" catalogs={{ es: unpackCatalog(catalog) }} development={dev}>
+      <I18nProvider language={language} catalogs={catalogs}>
         <div className='App'>
           <header className='App-header'>
             <h1 className='App-title'><Trans id='Welcome'>Welcome to React</Trans></h1>
@@ -54,7 +73,6 @@ class App extends Component {
             <a className='Github-link' target='_blank' rel='noopener noreferrer'
                href="https://github.com/EnriquezAndoni/react-boilerplate">Andoni Enriquez</a>
           </header>
-          <button onClick={() => attemptStartup(configuration)}>Check your console</button>
         </div>
       </I18nProvider>
     )
@@ -63,13 +81,14 @@ class App extends Component {
 
 function mapStateToProps(state) {
   return {
-    config: state.startup.configuration
+    language: state.i18n.language,
+    catalog: state.i18n.catalog
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    attemptStartup: (configuration) => dispatch(StartupActions.startup(configuration))
+    loadLanguage: (language) => dispatch(I18nActions.attemptI18n(language))
   }
 }
 
