@@ -59,7 +59,7 @@ class App extends Component {
   render() {
     const { language } = this.props
     const { catalogs } = this.state
-
+    
     // Skip rendering when catalog isn't loaded.
     if (!catalogs[language]) return (<div/>)
 
