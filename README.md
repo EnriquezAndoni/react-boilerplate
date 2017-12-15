@@ -2,10 +2,41 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Table of Contents
 
+- [Setup](#setup)
 - [Folder Structure](#folder-structure)
 - [Configuration](#project-configuration)
 - [Version Control Integration](#version-control-integration)
 - [Something Missing?](#something-missing?)
+
+## Setup
+
+### 1. Get the source code
+
+Just clone one of the branches:
+
+```
+$ git clone -b master https://github.com/EnriquezAndoni/react-boilerplate.git my-app
+$ cd my-app
+```
+
+You will probably want to remove git history and start a brand new repository:
+
+```
+$ rm -rf .git
+$ git init
+```
+
+### 2. Install dependencies
+
+```
+$ yarn install
+```
+
+### 3. Run the app
+
+```
+$ npm run start
+```
 
 ## Folder Structure
 
