@@ -1,6 +1,11 @@
 import { put } from 'redux-saga/effects'
 import I18nRedux from '../Redux/I18nRedux'
 
+/**
+ * @description Load the new language catalog
+ * @param {object} api - The connection with the api
+ * @param {string} language - The new language
+ */
 export function * loadLanguage (api, {language}) {
   console.log('API access: ', api)
   const catalog = yield import(`../locale/${language}/messages.js`)
