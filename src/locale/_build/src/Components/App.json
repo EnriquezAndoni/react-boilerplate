@@ -4,7 +4,16 @@
     "origin": [
       [
         "src/Components/App.js",
-        52
+        74
+      ]
+    ]
+  },
+  "Created": {
+    "defaults": "This is a React Boilerplate created by",
+    "origin": [
+      [
+        "src/Components/App.js",
+        75
       ]
     ]
   }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-// import PropTypes from 'prop-types'
+import PropTypes from 'prop-types'
 
 // Translation
 import { I18nProvider, Trans } from 'lingui-react'
@@ -9,6 +9,7 @@ import { unpackCatalog } from 'lingui-i18n'
 // Actions
 import I18nActions from '../Redux/I18nRedux'
 
+// Style
 import './Styles/App.css'
 
 class App extends Component {
@@ -24,11 +25,9 @@ class App extends Component {
     }
   }
 
-  /*
   static propTypes = {
     loadLanguage: PropTypes.func
   }
-  */
 
   componentDidMount() {
     const language = this.props.language
@@ -69,7 +68,7 @@ class App extends Component {
         <div className='App'>
           <header className='App-header'>
             <h1 className='App-title'><Trans id='Welcome'>Welcome to React</Trans></h1>
-            <h2 className='App-subtitle'>This is a React Boilerplate created by</h2>
+            <h2 className='App-subtitle'><Trans id='Created'>This is a React Boilerplate created by</Trans></h2>
             <a className='Github-link' target='_blank' rel='noopener noreferrer'
                href="https://github.com/EnriquezAndoni/react-boilerplate">Andoni Enriquez</a>
           </header>
