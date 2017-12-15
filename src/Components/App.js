@@ -13,6 +13,12 @@ import I18nActions from '../Redux/I18nRedux'
 import './Styles/App.css'
 
 class App extends Component {
+  /**
+   * @description Required props
+   */
+  static propTypes = {
+    loadLanguage: PropTypes.func
+  }
 
   /**
    * @constructor
@@ -25,15 +31,18 @@ class App extends Component {
     }
   }
 
-  static propTypes = {
-    loadLanguage: PropTypes.func
-  }
-
+  /**
+   * @description Load a predefined language
+   */
   componentDidMount() {
     const language = this.props.language
     this.props.loadLanguage(language)
   }
 
+  /**
+   * @description Update the state with nextProps
+   * @param {object} nextProps - The received props
+   */
   componentWillReceiveProps(nextProps) {
     const { language, catalog } = nextProps
     this.setState(state => ({
@@ -44,6 +53,11 @@ class App extends Component {
     }))
   }
 
+  /**
+   * @description Check when to re-render the component
+   * @param {object} nextProps - The received props
+   * @param {object} nextState - The next state
+   */
   shouldComponentUpdate(nextProps, nextState) {
     const { language } = nextProps
     const { catalogs } = nextState
@@ -56,10 +70,13 @@ class App extends Component {
     return true
   }
 
+  /**
+   * @description Render the component
+   */
   render() {
     const { language } = this.props
     const { catalogs } = this.state
-    
+
     // Skip rendering when catalog isn't loaded.
     if (!catalogs[language]) return (<div/>)
 
@@ -78,6 +95,13 @@ class App extends Component {
   }
 }
 
+/**
+ * @description Get the props from the store state
+ * @param {object} state - Store state
+ * @returns {object}
+ *  {string} language: the stored language
+ *  {import} catalog: the loaded catalog import
+ */
 function mapStateToProps(state) {
   return {
     language: state.i18n.language,
@@ -85,10 +109,19 @@ function mapStateToProps(state) {
   }
 }
 
+/**
+ * @description Get the props from the store state
+ * @param {object} dispatch
+ * @returns {object}
+ *  {func} loadLanguage: dispatch the attemptI18n reducer
+ */
 function mapDispatchToProps(dispatch) {
   return {
     loadLanguage: (language) => dispatch(I18nActions.attemptI18n(language))
   }
 }
 
+/**
+ * @description Connect mapStateToProps, mapDispatchToProps and the component
+ */
 export default connect(mapStateToProps, mapDispatchToProps)(App)
